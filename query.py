@@ -9,22 +9,30 @@ from model import db, Human, Animal
 
 def get_human_2():
     """Return the human with the id 2."""
+    return (Human.query.get(2))
+
 
 
 def get_first_fish():
     """Return the FIRST animal with the species 'fish'."""
-
+    return Animal.query.filter_by(animal_species='fish').first()
 
 def get_young_animals():
     """Return all animals that were born after 2015.
 
     Do NOT include animals without birth years.
     """
-
+    q = Animal.query(birth_year).all
+    print(q)
+    for x in q:
+        if animal.birth_year > 2015:
+            print(animal_id)
+            
+    return q.filter(Animal.birth_year > 2015).all()
 
 def get_j_names():
     """Return the humans with first names that start with 'J'."""
-
+    return Human.query.filter(fname == 'J').all
 
 def get_null_bdays():
     """Return all animals whose birth years are NULL."""
