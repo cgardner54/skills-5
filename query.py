@@ -12,7 +12,6 @@ def get_human_2():
     return (Human.query.get(2))
 
 
-
 def get_first_fish():
     """Return the FIRST animal with the species 'fish'."""
     return Animal.query.filter_by(animal_species='fish').first()
@@ -22,25 +21,29 @@ def get_young_animals():
 
     Do NOT include animals without birth years.
     """
-    q = Animal.query(birth_year).all
-    print(q)
-    for x in q:
-        if animal.birth_year > 2015:
-            print(animal_id)
-            
-    return q.filter(Animal.birth_year > 2015).all()
+    young_animals = Animal.query.filter(birth_year > 2015).all()
+    return young_animals
+
+        ### I can't figure out why my operators are not working.
+    
 
 def get_j_names():
     """Return the humans with first names that start with 'J'."""
-    return Human.query.filter(fname == 'J').all
+    return Human.query.filter(fname='J%').all
+
+    #not sure how to index into the fname... for J.
 
 def get_null_bdays():
     """Return all animals whose birth years are NULL."""
 
+    return Animal.query.filter(birth_year = None).all()
 
 def get_fish_or_rabbits():
     """Return all animals whose species is 'fish' OR 'rabbit'."""
-
+    fish = Animal.query.filter_by(animal_species='fish').all()
+    rabbit = Animal.query.filter_by(animal_species='rabbit').all()
+    return fish, rabbit
+    #I can't figure out why my operators are not working. Would've liked to do this in one line
 
 def print_directory():
     """Output a list of humans and their animals.
